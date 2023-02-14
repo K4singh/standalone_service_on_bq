@@ -1,3 +1,5 @@
+package com.google;
+
 public class hello_world {
 
     public static String generateString( String input) {
