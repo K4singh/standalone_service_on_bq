@@ -1,6 +1,6 @@
 package com.google;
 
-public class hello_world {
+public class helloWorld {
 
     public static String generateString( String input) {
 //        System.out.println("Generating string");
