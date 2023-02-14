@@ -2,6 +2,7 @@ package com.google;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.remoteFunctionObject;
+import com.google.FunctionResponseObj;
 import com.google.cloud.functions.HttpFunction;
 import com.google.cloud.functions.HttpRequest;
 import com.google.cloud.functions.HttpResponse;
@@ -19,6 +20,7 @@ public class helloWorld implements HttpFunction  {
         JsonElement requestParsed = gson.fromJson(request.getReader(), JsonElement.class);
         JsonObject requestJson = requestParsed.getAsJsonObject();
         ObjectMapper objectMapper = new ObjectMapper();
+        FunctionResponseObj functionResponseObj = new FunctionResponseObj();
         String[][] calls = null;
         if (requestJson != null) {
             logger.info(">> Request Json: " + requestJson);
@@ -28,7 +30,7 @@ public class helloWorld implements HttpFunction  {
             calls = remoteFunctionObject.getCalls();
             logger.info(">>calls: " + calls);
         }
-        return calls+"_test";
+        return "_test";
     }
 
     public static void main(String[] args){
