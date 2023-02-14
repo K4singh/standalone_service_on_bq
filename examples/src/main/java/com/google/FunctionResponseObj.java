@@ -14,17 +14,17 @@ import java.util.Arrays;
 })
 public class FunctionResponseObj {
     @JsonProperty("replies")
-    private int[] replies;
+    private String[] replies;
     @JsonProperty("errorMessage")
     private String errorMessage;
 
     @JsonProperty("replies")
-    public int[] getReplies() {
+    public String[] getReplies() {
         return replies;
     }
 
     @JsonProperty("replies")
-    public void setReplies(int[] replies) {
+    public void setReplies(String[] replies) {
         this.replies = replies;
     }
 
