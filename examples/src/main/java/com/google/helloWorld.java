@@ -14,7 +14,6 @@ public class helloWorld implements HttpFunction  {
     private static final Gson gson = new Gson();
     private static final Logger logger = Logger.getLogger(helloWorld.class.getName());
 
-
     @Override
     public void  service( HttpRequest request, HttpResponse response) throws Exception  {
 //        System.out.println("Generating string");
@@ -31,12 +30,17 @@ public class helloWorld implements HttpFunction  {
                     remoteFunctionObject.class);
 //            logger.info(remotefnObject);
             calls = remotefnObject.getCalls();
-            logger.info(">> printing calls: " + calls[0]);
+            //[["text1"],["text2"],["text3"],["text4"]]
+            logger.info(">> printing calls: " + calls);
             String[] responseArr = new String[calls.length];
             for (int index = 0; index < calls.length; index++) {
-                logger.info(">> "+index+": " + calls[0][index].toString());
-                responseArr[index] = calls[0][index].toString()+"_test";
+                //calls[0] = ["text1"],["text2"],["text3"],["text4"]
+                for (String str : calls[index]) {
+                    logger.info(">> " + index + ": " + str);
+                    responseArr[index] =str.toString() + "_test";
+                }
             }
+            logger.info(">> response: " + responseArr);
             functionResponseObj.setReplies(responseArr);
             BufferedWriter writer = response.getWriter();
             Gson gson = new GsonBuilder().disableHtmlEscaping().create();
