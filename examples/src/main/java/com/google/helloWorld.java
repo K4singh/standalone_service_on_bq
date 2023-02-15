@@ -23,20 +23,26 @@ public class helloWorld implements HttpFunction  {
         ObjectMapper objectMapper = new ObjectMapper();
         FunctionResponseObj functionResponseObj = new FunctionResponseObj();
         String[][] calls = null;
-        String[] reply = {"one", "two", "three"};
+
         if (requestJson != null) {
             logger.info(">> Request Json: " + requestJson);
             JsonNode jsonNode = objectMapper.readTree(String.valueOf(requestJson));
-            remoteFunctionObject remoteFunctionObject = objectMapper.treeToValue(jsonNode,
+            remoteFunctionObject remotefnObject = objectMapper.treeToValue(jsonNode,
                     remoteFunctionObject.class);
-            calls = remoteFunctionObject.getCalls();
+//            logger.info(remotefnObject);
+            calls = remotefnObject.getCalls();
+            logger.info(">> printing calls: " + calls[0]);
+            String[] responseArr = new String[calls.length];
+            for (int index = 0; index < calls.length; index++) {
+                logger.info(">> "+index+": " + calls[0][index].toString());
+                responseArr[index] = calls[0][index].toString()+"_test";
+            }
+            functionResponseObj.setReplies(responseArr);
+            BufferedWriter writer = response.getWriter();
+            Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+            writer.write(gson.toJson(functionResponseObj));
 
-            logger.info(">>calls: " + calls);
         }
-        functionResponseObj.setReplies(reply);
-        BufferedWriter writer = response.getWriter();
-        Gson gson = new GsonBuilder().disableHtmlEscaping().create();
-        writer.write(gson.toJson(functionResponseObj));
 
     }
 
