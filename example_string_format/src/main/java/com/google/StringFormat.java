@@ -26,9 +26,9 @@ import com.google.util.remoteFunctionObject;
 
 import java.io.BufferedWriter;
 import java.util.logging.Logger;
-public class string_format implements HttpFunction  {
+public class StringFormat implements HttpFunction  {
     private static final Gson gson = new Gson();
-    private static final Logger logger = Logger.getLogger(string_format.class.getName());
+    private static final Logger logger = Logger.getLogger(StringFormat.class.getName());
 
     @Override
     public void  service( HttpRequest request, HttpResponse response) throws Exception  {
