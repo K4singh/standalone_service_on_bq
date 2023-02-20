@@ -32,11 +32,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.9.1</version>
-        </dependency>
-        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>2.13.4</version>
@@ -46,7 +41,6 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.13.4</version>
         </dependency>
-
         <dependency>
             <groupId>com.google.truth</groupId>
             <artifactId>truth</artifactId>
@@ -68,7 +62,8 @@
 
     </dependencies>
     <build>
-        <finalName>helloWorld</finalName>
+        <finalName>StringFormat</finalName>
+        <outputDirectory>lib</outputDirectory>
         <plugins>
             <plugin>
                 <!--
@@ -84,7 +79,7 @@
                 <artifactId>function-maven-plugin</artifactId>
                 <version>0.10.0</version>
                 <configuration>
-                    <functionTarget>com.google.helloWorld</functionTarget>
+                    <functionTarget>com.google.StringFormat</functionTarget>
                 </configuration>
             </plugin>
             <plugin>
@@ -103,7 +98,6 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.4.1</version>
                 <configuration>
-
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>

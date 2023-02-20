@@ -1,9 +1,8 @@
-package com.google;
+package com.google.util;
 import com.fasterxml.jackson.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.google.UserDefinedContext;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({

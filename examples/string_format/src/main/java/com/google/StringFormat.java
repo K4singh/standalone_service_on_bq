@@ -1,22 +1,38 @@
+/*
+ * Copyright 2023 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.google;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.remoteFunctionObject;
-import com.google.FunctionResponseObj;
+import com.google.util.FunctionResponseObj;
 import com.google.cloud.functions.HttpFunction;
 import com.google.cloud.functions.HttpRequest;
 import com.google.cloud.functions.HttpResponse;
 import com.google.gson.*;
+import com.google.util.remoteFunctionObject;
+
 import java.io.BufferedWriter;
-import java.lang.reflect.Array;
 import java.util.logging.Logger;
-public class helloWorld implements HttpFunction  {
+public class string_format implements HttpFunction  {
     private static final Gson gson = new Gson();
-    private static final Logger logger = Logger.getLogger(helloWorld.class.getName());
+    private static final Logger logger = Logger.getLogger(string_format.class.getName());
 
     @Override
     public void  service( HttpRequest request, HttpResponse response) throws Exception  {
-//        System.out.println("Generating string");
+
         JsonElement requestParsed = gson.fromJson(request.getReader(), JsonElement.class);
         JsonObject requestJson = requestParsed.getAsJsonObject();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -28,13 +44,13 @@ public class helloWorld implements HttpFunction  {
             JsonNode jsonNode = objectMapper.readTree(String.valueOf(requestJson));
             remoteFunctionObject remotefnObject = objectMapper.treeToValue(jsonNode,
                     remoteFunctionObject.class);
-//            logger.info(remotefnObject);
+
             calls = remotefnObject.getCalls();
-            //[["text1"],["text2"],["text3"],["text4"]]
+
             logger.info(">> printing calls: " + calls);
             String[] responseArr = new String[calls.length];
             for (int index = 0; index < calls.length; index++) {
-                //calls[0] = ["text1"],["text2"],["text3"],["text4"]
+
                 for (String str : calls[index]) {
                     logger.info(">> " + index + ": " + str);
                     responseArr[index] =str.toString() + "_test";

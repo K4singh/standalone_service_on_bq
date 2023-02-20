@@ -1,4 +1,4 @@
-package com.google;
+package com.google.util;
 
 import com.fasterxml.jackson.annotation.*;
 
